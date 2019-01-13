@@ -3,4 +3,4 @@
  *
  * More stuff after initial summary (first sentence).
  */
-package com.example.appName.data.module1;
+package io.mercury.android.movies.data.movies;

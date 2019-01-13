@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.appName.data.module1" />
+    package="io.mercury.android.movies.data.movies" />

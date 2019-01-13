@@ -1,4 +1,4 @@
-package com.example.appName.data.base
+package io.mercury.android.movies.data.base
 
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.SOURCE)

@@ -1,4 +1,4 @@
-package com.example.appName.data.module1;
+package io.mercury.android.movies.data.movies;
 
 public class TestClass {
 
