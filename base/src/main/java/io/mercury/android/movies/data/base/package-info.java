@@ -1,6 +1,7 @@
 /**
- * Module1 documentation summary.
+ * Base module for common resources.
  *
- * More stuff after initial summary (first sentence).
+ * This module contains resources that are used across multiple modules. It is typically inherited
+ * by all modules, whether directly or transitively.
  */
 package io.mercury.android.movies.data.base;
