@@ -28,41 +28,7 @@ android {
         }
     }
 
-    //region Spek setup
-    sourceSets.each {
-        it.java.srcDirs += "src/$it.name/kotlin"
-    }
-
-    testOptions {
-        junitPlatform {
-            filters {
-                engines {
-                    include 'spek2'
-                }
-            }
-
-            jacocoOptions {
-                html.enabled = true
-                xml.enabled = false
-                csv.enabled = false
-                unitTests.all {
-                    testLogging.events = ["passed", "skipped", "failed"]
-                }
-            }
-        }
-    }
-    //endregion
 }
-
-//endregion JUnit 5 setup
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile)
-        .matching { "$it".contains("UnitTest") }
-        .all {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
-    }
-}
-//endregion
 
 dependencies {
     implementation project(path: ':base')
@@ -88,15 +54,6 @@ dependencies {
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     testImplementation 'junit:junit:4.12'
-    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
+    testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0'
 
-    // Spek
-    def spek_version = "2.0.0-rc.1"
-    testImplementation "org.spekframework.spek2:spek-dsl-jvm:$spek_version"
-    testImplementation "org.spekframework.spek2:spek-runner-junit5:$spek_version"
-
-    // JUnit 5
-    def jupiter_version = "5.2.0"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:$jupiter_version"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$jupiter_version"
 }
