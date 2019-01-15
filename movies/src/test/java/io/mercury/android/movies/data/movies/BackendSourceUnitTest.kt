@@ -24,4 +24,12 @@ class BackendSourceUnitTest {
         verify(api).getTopMovies()
     }
 
+    @Test
+    fun GetImdbMovie_GithubApiUsed() {
+        val id = "tt102"
+        source.getMovieInfo(id)
+
+        verify(api).getMovieInfo(id)
+    }
+
 }
