@@ -11,6 +11,13 @@ Data layer for movie information.
     Each module may need additional setup depending on the dependencies it uses. Refer to each
     module's section for more details.
 </p>
+<h1>Dependency Injection</h1>
+<p>
+    Toothpick is used for dependency injection for any modules that provide public dependencies that
+    cannot be created on their own. If DI is needed, the module will provide one or more
+    <code>Module</code> classes that can be used with Toothpick to inject the classes that are
+    needed.
+</p>
 <h1>Modules</h1>
 <h2>Base</h2>
 <p>

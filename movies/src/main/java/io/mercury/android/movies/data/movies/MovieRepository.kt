@@ -13,8 +13,11 @@ import org.threeten.bp.format.DateTimeParseException
 import timber.log.Timber
 import java.net.URI
 import java.net.URISyntaxException
+import javax.inject.Inject
 
-internal class MovieRepository(private val backendSource: BackendSource) : IMovieRepository {
+internal class MovieRepository @Inject constructor(
+        private val backendSource: BackendSource
+) : IMovieRepository {
 
     override fun getTopMovies(): Flowable<List<TopMovie>> =
             backendSource.getTopMovies()
