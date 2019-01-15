@@ -11,17 +11,18 @@ Data layer for movie information.
     Each module may need additional setup depending on the dependencies it uses. Refer to each
     module's section for more details.
 </p>
-<h1>Base</h1>
+<h1>Modules</h1>
+<h2>Base</h2>
 <p>
     The base module is typically inherited by all modules, whether directly or transitively, and
     contains common resources.
 </p>
-<h1>Movies</h1>
+<h2>Movies</h2>
 <p>
     The movies module is the main module of the data layer and provides movie information.
 </p>
-<h2>Setup</h2>
-<h3>ThreeTen Android Backport</h3>
+<h3>Setup</h3>
+<h4>ThreeTen Android Backport</h4>
 <p>
     This module uses ThreeTen Android backport for dates/times. It should be initialized in your
     <code>Application.onCreate()</code> method with <code>AndroidThreeTen.init(this);</code>.
