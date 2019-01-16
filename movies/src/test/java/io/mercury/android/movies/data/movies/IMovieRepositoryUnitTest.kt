@@ -5,7 +5,6 @@ import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import io.mercury.android.movies.data.movies.GithubApi.MovieInfoDto
 import io.mercury.android.movies.data.movies.GithubApi.TopMovieDto
-import io.mercury.android.movies.data.movies.IMovieRepository.TopMovie
 import io.reactivex.Single
 import io.reactivex.subscribers.TestSubscriber
 import org.junit.Before
@@ -17,7 +16,7 @@ class IMovieRepositoryUnitTest {
     private lateinit var repository: IMovieRepository
 
     private lateinit var topMovieSubscriber: TestSubscriber<List<TopMovie>>
-    private lateinit var movieInfoSubscriber: TestSubscriber<IMovieRepository.DetailedMovieInfo>
+    private lateinit var movieInfoSubscriber: TestSubscriber<DetailedMovieInfo>
 
     private val backendMovies by lazy {
         val dto = TopMovieDto(

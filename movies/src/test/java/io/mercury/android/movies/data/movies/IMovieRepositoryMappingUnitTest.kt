@@ -2,7 +2,6 @@ package io.mercury.android.movies.data.movies
 
 import io.mercury.android.movies.data.movies.GithubApi.MovieInfoDto
 import io.mercury.android.movies.data.movies.GithubApi.TopMovieDto
-import io.mercury.android.movies.data.movies.IMovieRepository.DetailedMovieInfo.ContentRating
 import org.junit.Assert.*
 import org.junit.Test
 import org.threeten.bp.LocalDate
@@ -134,7 +133,7 @@ class IMovieRepositoryMappingUnitTest {
     fun DtoToDetailedInfo_ContentRating_R_MappedCorrectly() {
         val info = mapDefaultMovieInfoDto()
 
-        assertEquals(ContentRating.R, info.contentRating)
+        assertEquals(DetailedMovieInfo.ContentRating.R, info.contentRating)
     }
 
     @Test
@@ -160,7 +159,7 @@ class IMovieRepositoryMappingUnitTest {
                 METASCORE
         ).toDetailedMovieInfo()
 
-        assertEquals(ContentRating.UNKNOWN, info.contentRating)
+        assertEquals(DetailedMovieInfo.ContentRating.UNKNOWN, info.contentRating)
     }
 
     @Test

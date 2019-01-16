@@ -37,7 +37,7 @@ class IMovieRepositoryIntegrationTest {
         val movieList = gson.fromJson<List<GithubApi.TopMovieDto>>(reader, listType)
         whenever(api.getTopMovies()).thenReturn(Single.just(movieList))
 
-        val topMovieSubscriber = TestSubscriber<List<IMovieRepository.TopMovie>>()
+        val topMovieSubscriber = TestSubscriber<List<TopMovie>>()
         repository.getTopMovies().subscribe(topMovieSubscriber)
 
         val movies = topMovieSubscriber.values()[0]
@@ -64,7 +64,7 @@ class IMovieRepositoryIntegrationTest {
         val movieDto = gson.fromJson(reader, GithubApi.MovieInfoDto::class.java)
         whenever(api.getMovieInfo(anyString())).thenReturn(Single.just(movieDto))
 
-        val infoSubscriber = TestSubscriber<IMovieRepository.DetailedMovieInfo>()
+        val infoSubscriber = TestSubscriber<DetailedMovieInfo>()
         repository.getMovieInfo("imdbId").subscribe(infoSubscriber)
 
         val movieInfo = infoSubscriber.values()[0]
@@ -74,7 +74,7 @@ class IMovieRepositoryIntegrationTest {
         assertEquals("tt0068646", imdbInfo.id)
         assertEquals("The Godfather", movieInfo.title)
         assertEquals(1972, movieInfo.year)
-        assertEquals(IMovieRepository.DetailedMovieInfo.ContentRating.R, movieInfo.contentRating)
+        assertEquals(DetailedMovieInfo.ContentRating.R, movieInfo.contentRating)
         assertNotNull(movieInfo.releaseDate)
         assertEquals(175, movieInfo.runtimeInMinutes)
 

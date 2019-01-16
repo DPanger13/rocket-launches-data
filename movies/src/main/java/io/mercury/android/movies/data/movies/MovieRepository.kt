@@ -2,10 +2,6 @@ package io.mercury.android.movies.data.movies
 
 import io.mercury.android.movies.data.movies.GithubApi.MovieInfoDto
 import io.mercury.android.movies.data.movies.GithubApi.TopMovieDto
-import io.mercury.android.movies.data.movies.IMovieRepository.DetailedMovieInfo
-import io.mercury.android.movies.data.movies.IMovieRepository.DetailedMovieInfo.ContentRating
-import io.mercury.android.movies.data.movies.IMovieRepository.TopMovie
-import io.mercury.android.movies.data.movies.IMovieRepository.TopMovie.ExtendedImdbInfo
 import io.reactivex.Flowable
 import org.threeten.bp.LocalDate
 import org.threeten.bp.format.DateTimeFormatter
@@ -46,7 +42,7 @@ internal fun TopMovieDto.toTopMovie(): TopMovie {
         Timber.e(exception, msg)
     }
 
-    val imdbInfo = ExtendedImdbInfo(imdbId, imdbRating, numVotes, pageUri)
+    val imdbInfo = TopMovie.ExtendedImdbInfo(imdbId, imdbRating, numVotes, pageUri)
 
     var posterUri: URI? = null
     try {
@@ -68,7 +64,7 @@ internal fun MovieInfoDto.toDetailedMovieInfo(): DetailedMovieInfo {
         Timber.e(exception, msg)
     }
 
-    val imdbInfo = IMovieRepository.ImdbInfo(imdbId, imdbRating, numImdbVotes)
+    val imdbInfo = ImdbInfo(imdbId, imdbRating, numImdbVotes)
 
     val datePattern = "d LLL yyyy"
     var parsedReleaseDate: LocalDate? = null
@@ -106,7 +102,7 @@ internal fun MovieInfoDto.toDetailedMovieInfo(): DetailedMovieInfo {
             year,
             posterUri,
             imdbInfo,
-            ContentRating.fromString(contentRating),
+            DetailedMovieInfo.ContentRating.fromString(contentRating),
             parsedReleaseDate,
             runtimeInMinutes,
             genres,
