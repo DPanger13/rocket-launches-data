@@ -1,3 +1,6 @@
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'maven-publish'
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -25,8 +28,6 @@ android {
 }
 
 dependencies {
-    api 'com.jakewharton.timber:timber:4.7.1'
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation 'androidx.appcompat:appcompat:1.0.0'
@@ -41,4 +42,39 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:2.23.0'
     testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC3'
 
+}
+
+def libraryGroupId = 'com.dpanger.android.launches.data'
+def libraryArtifactId = 'base'
+def libraryVersion = '0.1.0'
+
+publishing {
+    publications {
+        aar(MavenPublication) {
+            groupId libraryGroupId
+            version libraryVersion
+            artifactId libraryArtifactId
+
+            artifact("$buildDir/outputs/aar/${artifactId}-release.aar")
+        }
+    }
+}
+
+artifactory {
+    contextUrl = 'http://159.89.149.206:8081/artifactory'
+    publish {
+        repository {
+            repoKey = 'libs-release-local'
+
+            username = artifactory_username
+            password = artifactory_password
+        }
+        defaults {
+            publications('aar')
+            publishArtifacts = true
+
+            properties = ['qa.level': 'basic', 'q.os': 'android', 'dev.team': 'core']
+            publishPom = true
+        }
+    }
 }
