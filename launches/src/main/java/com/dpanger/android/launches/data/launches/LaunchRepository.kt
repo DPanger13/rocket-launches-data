@@ -31,12 +31,15 @@ internal fun LaunchApi.PagedLaunchSummaryDto.toPagedLaunchSummary(): PagedLaunch
         launchSummaries.add(launchSummary)
     }
 
-    return PagedLaunchSummary(
+    val launchSummary = PagedLaunchSummary(
             offset,
             count,
             total,
             launchSummaries
     )
+    Timber.d("$this mapped to $launchSummary")
+
+    return launchSummary
 }
 
 internal fun LaunchApi.PagedLaunchDto.toLaunch(): Launch {
@@ -52,7 +55,7 @@ internal fun LaunchApi.PagedLaunchDto.toLaunch(): Launch {
         missions.add(Launch.Mission(mission.name))
     }
 
-    return Launch(
+    val launch = Launch(
             launchDto.id,
             launchDto.name,
             LocalDateTime.parse(launchDto.dateTime, LaunchApi.dateTimeFormatter),
@@ -60,4 +63,7 @@ internal fun LaunchApi.PagedLaunchDto.toLaunch(): Launch {
             Launch.Rocket(launchDto.rocket.name),
             missions
     )
+    Timber.d("$this mapped to $launch")
+
+    return launch
 }
