@@ -11,3 +11,6 @@ Since this project is broken up into modules, there is no changelog for the whol
 
 ## Dates/Times
 [ThreeTen Android Backport](https://github.com/JakeWharton/ThreeTenABP) is used for dates and times. Setup should be followed according to the instructions on the linked GitHub page.
+
+## Logging
+[Timber](https://github.com/JakeWharton/timber) is used for logging. Logging can be customized by following initialization steps outlined in the linked GitHub page.
