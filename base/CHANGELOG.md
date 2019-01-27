@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Initial release
 
-## [0.2.0](https://github.com/DPanger13/rocket-launches-data/tree/base-v0.1.0) - 2018-01-26
+## [0.2.0](https://github.com/DPanger13/rocket-launches-data/tree/base-v0.2.0) - 2018-01-26
 ### Changed
 - Initialization of modules (ie, ThreeTen ABP) is no longer forced on the consumer. Initialization
 of the base module, specifically, is done through `Initializer`. Each child module should have a 
