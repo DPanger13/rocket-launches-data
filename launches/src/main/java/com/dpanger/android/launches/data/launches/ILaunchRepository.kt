@@ -6,6 +6,9 @@ import io.reactivex.Flowable
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 interface ILaunchRepository {
 
@@ -17,6 +20,20 @@ interface ILaunchRepository {
     fun getUpcomingLaunches(offset: Int? = null): Flowable<PagedLaunchSummary>
 
     fun getLaunch(id: Int): Flowable<Launch>
+
+    companion object {
+        fun create(): ILaunchRepository {
+            val api = Retrofit.Builder()
+                    .baseUrl("https://launchlibrary.net/1.3/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .build()
+                    .create(LaunchApi::class.java)
+            val backendSource = BackendSource(api)
+
+            return LaunchRepository(backendSource)
+        }
+    }
 
 }
 
